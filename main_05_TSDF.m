@@ -51,8 +51,13 @@ while(frame_id< num_frame)%这里的num_frame是需要重合的帧数
     PicNum = int2str(frame_id); 
     PicKind = '.png';
     Picname = strcat(PicNum,PicKind);
+%      Picname1 = strcat(PicNum+1,PicKind);
+%       Picname2 = strcat(PicNum+2,PicKind);
     depth = depthRead(Picname);
-    depth = BilateralFiltGray(double(depth), d, sigma);
+%     depth1= depthRead(Picname1);
+%     depth2= depthRead(Picname2);
+%     depth=(depth+depth1+depth2)./3;
+%     depth = BilateralFiltGray(double(depth), d, sigma);
    
     disp('tsdf ');
     tic;
