@@ -69,8 +69,8 @@ classdef TSDF_CLASS < handle
             %obj.setData(original_pose);
             %先得到了一个视锥在真实空间中坐标
             [view_frustum_w,view_frustum_c]=obj.getViewFrustumW(pose);
-            %将深度图转换为世界坐标系中的坐标XYZcam
-            XYZworld = depth2XYZworld(obj.cameraIntrinsicParam, pose, depth_image);
+            %将深度图转换为世界坐标系中的坐标XYZ 这里使用三角化方法 depth2XYZworld3
+            XYZworld = depth2XYZworld3(obj.cameraIntrinsicParam, pose, depth_image);
             %计算当前的volume与计算得到视锥重叠的部分~~rangeGrid就是坐标范围，不是真是的坐标
             rangeGrid = obj.getRangeGrid(view_frustum_w,view_frustum_c);
             hold on
@@ -167,7 +167,7 @@ classdef TSDF_CLASS < handle
         function getDistance(obj,ind,gridCoordinateW,gridIndex,XYZcam,pose)
             % compare distance between measurement and the grid
             eta = (XYZcam(ind+obj.image_properties(2)*obj.image_properties(1)*2)- gridCoordinateW(3,:)) .* ((1+ (gridCoordinateW(1,:)./gridCoordinateW(3,:)).^2 + (gridCoordinateW(2,:)./gridCoordinateW(3,:)).^2 ).^0.5);
-            
+            % 这里是约束
             R=pose(1:3,1:3);
             Z_cam=(R*[0;0;1])';
             if Z_cam(3)<0

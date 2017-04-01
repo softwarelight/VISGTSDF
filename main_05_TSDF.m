@@ -52,7 +52,7 @@ while(frame_id< num_frame)%这里的num_frame是需要重合的帧数
     PicKind = '.png';
     Picname = strcat(PicNum,PicKind);
 %      Picname1 = strcat(PicNum+1,PicKind);
-%       Picname2 = strcat(PicNum+2,PicKind);
+%      Picname2 = strcat(PicNum+2,PicKind);
     depth = depthRead(Picname);
 %     depth1= depthRead(Picname1);
 %     depth2= depthRead(Picname2);
@@ -79,7 +79,6 @@ hold off
 [y,x,z] = meshgrid(1:200,1:200,1:200);
 [f1,v1]=MarchingCubes(x,y,z,tsdf_global.tsdf_value,0);
 
-%write_ply(v1,f1,'data/tsdf_current.ply');
-write_ply(v1,f1,'data/tsdf.ply');
+write_ply(v1,f1,'data/tsdf_3.ply');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
