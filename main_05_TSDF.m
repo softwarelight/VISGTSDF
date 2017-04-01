@@ -1,6 +1,6 @@
 clear;
 addpath('function2');
-addpath('E:\MyCode\data\depth');
+addpath('D:\Niuniu\Examnation\TSDF\MyCode\data\depth');
 addpath('data\extrinsics');
 
 %¶ÁÈ¡ÄÚ²Î¾ØÕó
