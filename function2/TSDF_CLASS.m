@@ -209,10 +209,10 @@ classdef TSDF_CLASS < handle
                 disp('no faces extracted');
                 return;
             end
-            %isosurface �Ƿ��ģ�Ҫ����Ū������
+            %isosurface 
             %%{
             points_grids(:,1)=vertex(:,2);
-            points_grids(:,2)=vertex(:,1);% ����֮ǰҲ����һ���滻points_grids(:,1)=verts(:,2);�����ֲ���Ҫ��
+            points_grids(:,2)=vertex(:,1);% points_grids(:,1)=verts(:,2);
             points_grids(:,3)=vertex(:,3);
             %}
             options.normal = compute_normal(points_grids,face);
@@ -235,9 +235,9 @@ classdef TSDF_CLASS < handle
         end
         function [points_grids,faces]=extractMesh(obj,filename_mesh)
             [faces,vertex]=isosurface(obj.tsdf_value);
-            %isosurface �Ƿ��ģ�Ҫ����Ū������
+            %isosurface 
             points_grids(:,1)=vertex(:,2);
-            points_grids(:,2)=vertex(:,1);% ����֮ǰҲ����һ���滻points_grids(:,1)=verts(:,2);�����ֲ���Ҫ��
+            points_grids(:,2)=vertex(:,1);% points_grids(:,1)=verts(:,2);
             points_grids(:,3)=vertex(:,3);
             write_ply(points_grids,faces,filename_mesh);
         end
