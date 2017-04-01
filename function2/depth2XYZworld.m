@@ -2,13 +2,23 @@
 function XYZworld = depth2XYZworld(K, pose, depth)
 
     [image_row,image_col]  = size(depth);
- 
-%     for i=3:image_col-3
-%       for j=3:image_row-3
-%            b = depth(i-1:i+1, j-1:j+1);
+%%
+    depth_temp =zeros (image_row, image_col);
+for i=3:image_row-3
+      for j=3:image_col-3
+% %method 1          
+%                 b = depth(i-1:i+1, j-1:j+1);
 %                depth(i,j) = sum(sum(b))/8;
-%       end
-%     end
+
+%method 2 
+                    b=depth(i-1:i+1,j);
+                    depth_temp(i,j)=sum(sum(b))/3;
+      end
+end
+depth = depth_temp;
+
+%%
+
     
     [x,y] = meshgrid(1:image_col, 1:image_row);
     R = pose(1:3,1:3);
